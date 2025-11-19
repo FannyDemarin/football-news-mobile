@@ -1,6 +1,7 @@
 # football_news
 
 A new Flutter project.
+Test bitrise trigger 
 
 ## Getting Started
 

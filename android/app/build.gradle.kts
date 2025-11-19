@@ -22,7 +22,7 @@ val keystorePassword = System.getenv("KEY_PASSWORD")
 val keystoreFile = File("release.keystore")
 
 if (!keystoreFile.exists()) {
-    keystoreFile.writeBytes(java.util.Base64.getDecoder().decode(keystoreBase64))
+    keystoreFile.writeBytes(Base64.getDecoder().decode(keystoreBase64))
 }
 
 android {

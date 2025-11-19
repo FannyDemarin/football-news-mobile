@@ -37,7 +37,7 @@ jobs:
 
       # 👉 IMPORTANT : CRÉER LE KEYSTORE AVANT LE BUILD
       - name: Decode Keystore
-        run: echo "${{ secrets.KEY_JKS }}" | base64 -d > android/app/release-keystore.jks
+        run: echo "${{ secrets.KEY_JKS }}" | base64 -d > android/app/upload-keystore.jks
 
       - name: Install dependencies
         run: flutter pub get

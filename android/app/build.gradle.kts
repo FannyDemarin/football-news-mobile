@@ -30,7 +30,7 @@ android {
         create("release") {
             val password = System.getenv("KEY_PASSWORD")
 
-            storeFile = file("release-keystore.jks")
+            storeFile = file("upload-keystore.jks")
             storePassword = password
             keyPassword = password
             keyAlias = "upload"

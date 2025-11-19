@@ -15,6 +15,15 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+val keystoreBase64 = System.getenv("KEY_JKS")
+val keystorePassword = System.getenv("KEY_PASSWORD")
+
+val keystoreFile = File("release.keystore")
+
+if (!keystoreFile.exists()) {
+    keystoreFile.writeBytes(java.util.Base64.getDecoder().decode(keystoreBase64))
+}
+
 android {
     namespace = "com.example.football_news"
     compileSdk = flutter.compileSdkVersion
@@ -39,10 +48,10 @@ android {
 
     signingConfigs {
         create("release") {
-            keyAlias = keystoreProperties["keyAlias"] as String
-            keyPassword = keystoreProperties["keyPassword"] as String
-            storeFile = file(keystoreProperties["storeFile"] as String)
-            storePassword = keystoreProperties["storePassword"] as String
+            keyAlias =  "upload"
+            keyPassword = keystorePassword
+            storeFile = keystoreFile
+            storePassword = keystorePassword 
         }
     }
 

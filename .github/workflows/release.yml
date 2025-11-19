@@ -15,6 +15,7 @@ jobs:
     env:
       KEY_JKS: ${{ secrets.KEY_JKS }}
       KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+      STORE_PASSWORD: ${{ secrets.KEY_PASSWORD }}
 
     steps:
       - name: Checkout the code
@@ -35,20 +36,22 @@ jobs:
         with:
           channel: "stable"
 
-      # 👉 IMPORTANT : CRÉER LE KEYSTORE AVANT LE BUILD
+      # recréer le keystore
       - name: Decode Keystore
         run: echo "${{ secrets.KEY_JKS }}" | base64 -d > android/app/upload-keystore.jks
+
+      # recréer key.properties
+      - name: Setup key.properties
+        run: |
+          echo "storePassword=${{ secrets.STORE_PASSWORD }}" > android/key.properties
+          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/key.properties
+          echo "keyAlias=upload" >> android/key.properties
+          echo "storeFile=upload-keystore.jks" >> android/key.properties
 
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Debug env
-        run: echo "KEY_PASSWORD=$KEY_PASSWORD"
-
-      # 👉 Build APK + signature automatique Gradle (car keystore présent)
       - name: Build APK
-        env:
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: flutter build apk --split-per-abi
 
       - name: Get current date

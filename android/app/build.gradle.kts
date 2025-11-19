@@ -1,5 +1,6 @@
 import java.util.Properties
 import java.io.FileInputStream
+import java.util.Base64
 
 // Charger les propriétés du keystore
 val keystoreProperties = Properties()

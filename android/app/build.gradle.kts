@@ -1,3 +1,6 @@
+import java.util.Properties
+import java.io.FileInputStream
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -26,14 +29,19 @@ android {
         versionName = flutter.versionName
     }
 
+    val keystoreProperties = Properties()
+val keystoreFile = rootProject.file("key.properties")
+if (keystoreFile.exists()) {
+    keystoreProperties.load(FileInputStream(keystoreFile))
+}
+
     signingConfigs {
         create("release") {
-            val password = System.getenv("KEY_PASSWORD")
+keyAlias = "upload"
+keyPassword = requireNotNull(keystoreProperties["keyPassword"]) { "Missing keyPassword in key.properties" }.toString()
+storeFile = file(requireNotNull(keystoreProperties["storeFile"]) { "Missing storeFile in key.properties" }.toString())
+storePassword = requireNotNull(keystoreProperties["storePassword"]) { "Missing storePassword in key.properties" }.toString()
 
-            storeFile = file("upload-keystore.jks")
-            storePassword = password
-            keyPassword = password
-            keyAlias = "upload"
         }
     }
 

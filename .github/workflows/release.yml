@@ -42,13 +42,14 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Debug env
+        run: echo "KEY_PASSWORD=$KEY_PASSWORD"
+
       # 👉 Build APK + signature automatique Gradle (car keystore présent)
       - name: Build APK
+        env:
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }
         run: flutter build apk --split-per-abi
-
-      - name: Remove Keystore (security)
-        if: always()
-        run: rm -f android/app/release-keystore.jks
 
       - name: Get current date
         id: date

@@ -48,7 +48,7 @@ jobs:
         run: flutter build apk --split-per-abi
 
       - name: Decode Keystore
-        run: echo "${{ secrets.KEY_JKS }}" | base64 -d > release-keystore.jks
+        run: echo "${{ secrets.KEY_JKS }}" | base64 -d > android/app/release-keystore.jks
 
       - name: Sign APKs
         run: |

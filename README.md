@@ -3,15 +3,10 @@
 A new Flutter project.
 Test bitrise trigger 2
 
-## Getting Started
+# Your Application Name
 
-This project is a starting point for a Flutter application.
+[![Build Status](https://app.bitrise.io/app/f73a779c-9396-4202-aafc-e2e77778fe13/status.svg?token=AnA-mF92NVgho3Ige7yN0g&branch=main)](https://app.bitrise.io/app/f73a779c-9396-4202-aafc-e2e77778fe13)
 
-A few resources to get you started if this is your first Flutter project:
+## Download
+Download the latest version of the application: [Download APK](https://app.bitrise.io/app/f73a779c-9396-4202-aafc-e2e77778fe13/installable-artifacts/c3060cc695f574ab/public-install-page/f5fea33f082706c529c6eaf7a50340d3)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
